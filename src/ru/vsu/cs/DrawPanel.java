@@ -2,6 +2,7 @@ package ru.vsu.cs;
 
 import ru.vsu.cs.pixel_lines.BresenheimLineDrawer;
 import ru.vsu.cs.pixel_lines.DDALineDrawer;
+import ru.vsu.cs.pixel_lines.WuLineDrawer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +30,7 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
         PixelDrawer pd = new GraphicsPixelDrawer(gr);
         //LineDrawer ld = new DDALineDrawer(pd);
         LineDrawer ld = new BresenheimLineDrawer(pd);
+        //LineDrawer ld = new WuLineDrawer(pd);
         drawAll(ld);
 
         g.drawImage(bi, 0, 0, null);
