@@ -15,43 +15,8 @@ WuLineDrawer implements LineDrawer {
 
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
-            /*int x = x1;
-            int y = y1;
-            int dx = Math.abs(x2 - x1);
-            int dy = Math.abs(y2 - y1);
-            int e = 2 * dy - dx;
-            float d;
-            //SolidBrush b1, b2;
 
-            for (int i = 1; i <= dx; i++)
-            {
-                d = -1F * e / (dy + dx) / 1.15F;
-                if (e >= 0)
-                {
-                   *//* b1 = new SolidBrush(SetColor(1F / 2 - d));
-                    b2 = new SolidBrush(SetColor(1F / 2 + d));*//*
-
-                    pd.colorPixel(x, y + 1, Color.black);
-                    y++;
-                    e += -2 * dx + 2 * dy;
-                }
-                else
-                {
-                    *//*b1 = new SolidBrush(SetColor(1F / 2 + d));
-                    b2 = new SolidBrush(SetColor(1F / 2 - d));
-                    g.FillRectangle(b2, x, y, 1, 1);
-                    g.FillRectangle(b1, x, y - 1, 1, 1);
-                    *//*
-                    pd.colorPixel(x, y + 1, Color.black);
-                    pd.colorPixel(x, y - 1, Color.black);
-                    e += 2 * dy;
-                }
-                x++;
-                *//*b1.Dispose();
-                b2.Dispose();*//*
-            }*/
-
-        Color c = Color.BLACK;
+        Color c = Color.cyan;
         int dx = x2 - x1;
         int dy = y2 - y1;
         int signX = 1;
