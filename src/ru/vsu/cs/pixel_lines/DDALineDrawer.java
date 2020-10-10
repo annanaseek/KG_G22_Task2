@@ -29,7 +29,7 @@ public class DDALineDrawer implements LineDrawer {
             }
             for (int i = y1; i <= y2; i++) {
                 double j = (i - y1) * obrk + x1;
-                pd.colorPixel((int)j, i, Color.BLACK);
+                pd.colorPixel((int)j, i, Color.cyan);
             }
         } else {
             double k = dy / dx;
@@ -43,7 +43,7 @@ public class DDALineDrawer implements LineDrawer {
             }
             for (int j = x1; j <= x2; j++) {
                 double i = (j - x1) * k + y1;
-                pd.colorPixel(j, (int)i, Color.BLUE);
+                pd.colorPixel(j, (int)i, Color.cyan);
             }
         }
 
