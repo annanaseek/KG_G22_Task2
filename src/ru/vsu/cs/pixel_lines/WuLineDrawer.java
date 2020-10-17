@@ -19,17 +19,12 @@ WuLineDrawer implements LineDrawer {
         Color c = Color.cyan;
         int dx = x2 - x1;
         int dy = y2 - y1;
-        int signX = 1;
-        int signY = 1;
+        int signX = (int)Math.signum(dx);
+        int signY = (int)Math.signum(dy);
         int x = x1;
         int y = y1;
-        int err = 0;
-        if (dx < 0) {
-            signX = -1;
-        }
-        if (dy < 0) {
-            signY = -1;
-        }
+        int e = 0;
+
         dx = Math.abs(dx);
         dy = Math.abs(dy);
         int gradient;
@@ -39,7 +34,7 @@ WuLineDrawer implements LineDrawer {
                 if (dx == 0) {
                     gradient = 255;
                 } else {
-                    gradient = (255 * err) / (2 * dx);
+                    gradient = (255 * e) / (2 * dx);
                 }
                 c1 = new Color(c.getRed(), c.getGreen(), c.getBlue(), 255 - Math.abs(gradient));
                 c2 = new Color(c.getRed(), c.getGreen(), c.getBlue(), Math.abs(gradient));
@@ -50,11 +45,11 @@ WuLineDrawer implements LineDrawer {
                     pd.colorPixel(x, y - signY, c2);
                 }
 
-                err += 2 * dy;
-                if (err > dx) {
+                e += 2 * dy;
+                if (e > dx) {
                     y += signY;
-                    err -= 2 * dx;
-                } else if (err < -dx) {
+                    e -= 2 * dx;
+                } else if (e < -dx) {
                     y -= signY;
                 }
                 x += signX;
@@ -64,7 +59,7 @@ WuLineDrawer implements LineDrawer {
                 if (dy == 0) {
                     gradient = 255;
                 } else {
-                    gradient = (255 * err) / (2 * dy);
+                    gradient = (255 * e) / (2 * dy);
                 }
                 c1 = new Color(c.getRed(), c.getGreen(), c.getBlue(), 255 - Math.abs(gradient));
                 c2 = new Color(c.getRed(), c.getGreen(), c.getBlue(), Math.abs(gradient));
@@ -75,11 +70,11 @@ WuLineDrawer implements LineDrawer {
                     pd.colorPixel(x - signX, y, c2);
                 }
 
-                err += 2 * dx;
-                if (err > dy) {
+                e += 2 * dx;
+                if (e > dy) {
                     x += signX;
-                    err -= 2 * dy;
-                } else if (err < -dy) {
+                    e -= 2 * dy;
+                } else if (e < -dy) {
                     x -= signX;
                 }
                 y += signY;
