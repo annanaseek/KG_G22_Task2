@@ -1,12 +1,14 @@
 package ru.vsu.cs;
 
 import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PieDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PixelDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.LineDrawer;
 
 import java.awt.*;
 
 public class BresenheimPieDrawer implements PieDrawer {
 
-    private ru.vsu.cs.PixelDrawer pd;
+    private PixelDrawer pd;
     private LineDrawer ld;
 
     public BresenheimPieDrawer(PixelDrawer pd, LineDrawer ld) {
@@ -28,9 +30,9 @@ public class BresenheimPieDrawer implements PieDrawer {
                 lastX++;
             }
         }
-        ld.drawLine(pie.getXcenter(), pie.getYcenter(), pie.getACosMaxAngle() + pie.getXcenter(), pie.getBSinMaxAngle() + pie.getYcenter());
+        ld.drawLine(pie.getXcenter(), pie.getYcenter(), pie.getACosMaxAngle() + pie.getXcenter(), pie.getBSinMaxAngle() + pie.getYcenter(), color);
         if (arcAngle < 2* Math.PI) {
-            ld.drawLine(pie.getXcenter(), pie.getYcenter(), pie.getACosMinAngle() + pie.getXcenter(), pie.getBSinMinAngle() + pie.getYcenter());
+            ld.drawLine(pie.getXcenter(), pie.getYcenter(), pie.getACosMinAngle() + pie.getXcenter(), pie.getBSinMinAngle() + pie.getYcenter(), color);
         }
     }
 
@@ -43,7 +45,7 @@ public class BresenheimPieDrawer implements PieDrawer {
 
     private void colorPixel(Pie pie, int x, int y, Color color) {
         if (!pie.isPointInside(x, y)) {
-            pd.colorPixel(x + pie.getXcenter(), y + pie.getYcenter(), color);
+            pd.setPixel(x + pie.getXcenter(), y + pie.getYcenter(), color);
         }
     }
 }

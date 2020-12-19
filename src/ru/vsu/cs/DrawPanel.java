@@ -1,8 +1,10 @@
 package ru.vsu.cs;
 
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.ArcDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.LineDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PieDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PixelDrawer;
 import ru.vsu.cs.pixel_lines.BresenheimLineDrawer;
-import ru.vsu.cs.pixel_lines.DDALineDrawer;
-import ru.vsu.cs.pixel_lines.WuLineDrawer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,13 +27,11 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
 
         gr.setColor(Color.WHITE);
         gr.fillRect(0, 0, getWidth(), getHeight());
-        //gr.setColor(new Color(204, 99, 200));
+        gr.setColor(Color.BLACK);
 
         PixelDrawer pd = new GraphicsPixelDrawer(gr);
-       // LineDrawer ld = new DDALineDrawer(pd);
         LineDrawer ld = new BresenheimLineDrawer(pd);
-//        LineDrawer ld = new WuLineDrawer(pd);
-        drawAll(ld, pd);
+        drawAll(pd, ld);
 
         g.drawImage(bi, 0, 0, null);
         gr.dispose();
@@ -43,21 +43,21 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
             double a = da * i;
             double dx = r * Math.cos(a);
             double dy = r * Math.sin(a);
-            ld.drawLine(x, y, x + (int) dx, y + (int) dy);
+            ld.drawLine(x, y, x + (int) dx, y + (int) dy, Color.cyan);
         }
     }
 
     private void drawArc(PixelDrawer pd, LineDrawer ld) {
-        BresenheimArcDrawer bresenheimArcDrawer = new BresenheimArcDrawer(pd, ld);
+        ArcDrawer bresenheimArcDrawer = new BresenheimArcDrawer(pd, ld);
         bresenheimArcDrawer.drawArc(400, 250, 300, 150, 0, 1.7*Math.PI, Color.black);
     }
 
     private void drawPie(PixelDrawer pd, LineDrawer ld) {
-        BresenheimPieDrawer bresenheimPieDrawer = new BresenheimPieDrawer(pd, ld);
+        PieDrawer bresenheimPieDrawer = new BresenheimPieDrawer(pd, ld);
         bresenheimPieDrawer.drawPie(100, 100, 300, 150, 0, 1.7*Math.PI, Color.black);
     }
 
-    private void drawAll(LineDrawer ld, PixelDrawer pd) {
+    private void drawAll(PixelDrawer pd, LineDrawer ld) {
         //drawSnowFlake(ld, getWidth() / 2, getHeight() / 2, 150, 28);
         //ld.drawLine(getWidth() / 2, getHeight() / 2, (int) position.getX(), (int) position.getY());
         drawArc(pd, ld);

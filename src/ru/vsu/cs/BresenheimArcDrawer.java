@@ -1,7 +1,8 @@
 package ru.vsu.cs;
 
 import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.ArcDrawer;
-import ru.vsu.cs.pixel_lines.BresenheimLineDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PixelDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.LineDrawer;
 
 import java.awt.*;
 
@@ -28,9 +29,21 @@ public class BresenheimArcDrawer implements ArcDrawer {
                 lastX++;
             }
         }
-        ld.drawLine(arc.getXcenter(), arc.getYcenter(), arc.getACosMaxAngle() + arc.getXcenter(), arc.getBSinMaxAngle() + arc.getYcenter());
+        ld.drawLine(
+                arc.getXcenter(),
+                arc.getYcenter(),
+                arc.getACosMaxAngle() + arc.getXcenter(),
+                arc.getBSinMaxAngle() + arc.getYcenter(),
+                color
+        );
         if (arcAngle < 2* Math.PI)
-        ld.drawLine(arc.getXcenter(), arc.getYcenter(), arc.getACosMinAngle() + arc.getXcenter(), arc.getBSinMinAngle() + arc.getYcenter());
+        ld.drawLine(
+                arc.getXcenter(),
+                arc.getYcenter(),
+                arc.getACosMinAngle() + arc.getXcenter(),
+                arc.getBSinMinAngle() + arc.getYcenter(),
+                color
+        );
     }
 
     private void drawArcPixel(Arc arc, int x, int y, Color color) {
@@ -42,7 +55,7 @@ public class BresenheimArcDrawer implements ArcDrawer {
 
     private void colorPixel(Arc arc, int x, int y, Color color) {
         if (arc.isPointInside(x, y)) {
-            pd.colorPixel(x + arc.getXcenter(), y + arc.getYcenter(), color);
+            pd.setPixel(x + arc.getXcenter(), y + arc.getYcenter(), color);
         }
     }
 

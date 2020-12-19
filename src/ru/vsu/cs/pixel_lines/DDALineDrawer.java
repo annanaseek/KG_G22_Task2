@@ -1,7 +1,7 @@
 package ru.vsu.cs.pixel_lines;
 
-import ru.vsu.cs.LineDrawer;
-import ru.vsu.cs.PixelDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PixelDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.LineDrawer;
 
 import java.awt.*;
 
@@ -13,7 +13,7 @@ public class DDALineDrawer implements LineDrawer {
     }
 
     @Override
-    public void drawLine(int x1, int y1, int x2, int y2) {
+    public void drawLine(int x1, int y1, int x2, int y2, Color color) {
         double dx = x2 - x1;
         double dy = y2 - y1;
 
@@ -29,7 +29,7 @@ public class DDALineDrawer implements LineDrawer {
             }
             for (int i = y1; i <= y2; i++) {
                 double j = (i - y1) * obrk + x1;
-                pd.colorPixel((int)j, i, Color.black);
+                pd.setPixel((int)j, i, color);
             }
         } else {
             double k = dy / dx;
@@ -43,7 +43,7 @@ public class DDALineDrawer implements LineDrawer {
             }
             for (int j = x1; j <= x2; j++) {
                 double i = (j - x1) * k + y1;
-                pd.colorPixel(j, (int)i, Color.black);
+                pd.setPixel(j, (int)i, color);
             }
         }
 

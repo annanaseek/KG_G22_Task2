@@ -1,7 +1,7 @@
 package ru.vsu.cs.pixel_lines;
 
-import ru.vsu.cs.LineDrawer;
-import ru.vsu.cs.PixelDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PixelDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.LineDrawer;
 
 import java.awt.*;
 
@@ -14,9 +14,8 @@ WuLineDrawer implements LineDrawer {
     }
 
     @Override
-    public void drawLine(int x1, int y1, int x2, int y2) {
+    public void drawLine(int x1, int y1, int x2, int y2, Color color) {
 
-        Color c = Color.black;
         int dx = x2 - x1;
         int dy = y2 - y1;
         int signX = (int)Math.signum(dx);
@@ -36,13 +35,13 @@ WuLineDrawer implements LineDrawer {
                 } else {
                     gradient = (255 * e) / (2 * dx);
                 }
-                c1 = new Color(c.getRed(), c.getGreen(), c.getBlue(), 255 - Math.abs(gradient));
-                c2 = new Color(c.getRed(), c.getGreen(), c.getBlue(), Math.abs(gradient));
-                pd.colorPixel(x, y, c1);
+                c1 = new Color(color.getRed(), color.getGreen(), color.getBlue(), 255 - Math.abs(gradient));
+                c2 = new Color(color.getRed(), color.getGreen(), color.getBlue(), Math.abs(gradient));
+                pd.setPixel(x, y, c1);
                 if (gradient > 0) {
-                    pd.colorPixel(x, y + signY, c2);
+                    pd.setPixel(x, y + signY, c2);
                 } else {
-                    pd.colorPixel(x, y - signY, c2);
+                    pd.setPixel(x, y - signY, c2);
                 }
 
                 e += 2 * dy;
@@ -61,13 +60,13 @@ WuLineDrawer implements LineDrawer {
                 } else {
                     gradient = (255 * e) / (2 * dy);
                 }
-                c1 = new Color(c.getRed(), c.getGreen(), c.getBlue(), 255 - Math.abs(gradient));
-                c2 = new Color(c.getRed(), c.getGreen(), c.getBlue(), Math.abs(gradient));
-                pd.colorPixel(x, y, c1);
+                c1 = new Color(color.getRed(), color.getGreen(), color.getBlue(), 255 - Math.abs(gradient));
+                c2 = new Color(color.getRed(), color.getGreen(), color.getBlue(), Math.abs(gradient));
+                pd.setPixel(x, y, c1);
                 if (gradient > 0) {
-                    pd.colorPixel(x + signX, y, c2);
+                    pd.setPixel(x + signX, y, c2);
                 } else {
-                    pd.colorPixel(x - signX, y, c2);
+                    pd.setPixel(x - signX, y, c2);
                 }
 
                 e += 2 * dx;
