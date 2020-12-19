@@ -12,6 +12,6 @@ public class GraphicsPixelDrawer implements PixelDrawer {
     @Override
     public void colorPixel(int x, int y, Color c) {
         gr.setColor(c);
-        gr.drawRect(x, y, 1, 1);
+        gr.fillRect(x, y, 1, 1);
     }
 }

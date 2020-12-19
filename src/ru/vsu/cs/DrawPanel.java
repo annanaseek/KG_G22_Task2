@@ -28,10 +28,10 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
         //gr.setColor(new Color(204, 99, 200));
 
         PixelDrawer pd = new GraphicsPixelDrawer(gr);
-        LineDrawer ld = new DDALineDrawer(pd);
-        //LineDrawer ld = new BresenheimLineDrawer(pd);
-        //LineDrawer ld = new WuLineDrawer(pd);
-        drawAll(ld);
+       // LineDrawer ld = new DDALineDrawer(pd);
+        LineDrawer ld = new BresenheimLineDrawer(pd);
+//        LineDrawer ld = new WuLineDrawer(pd);
+        drawAll(ld, pd);
 
         g.drawImage(bi, 0, 0, null);
         gr.dispose();
@@ -47,9 +47,22 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
         }
     }
 
-    private void drawAll(LineDrawer ld) {
-        drawSnowFlake(ld, getWidth() / 2, getHeight() / 2, 150, 28);
-        ld.drawLine(getWidth() / 2, getHeight() / 2, (int) position.getX(), (int) position.getY());
+    private void drawArc(PixelDrawer pd, LineDrawer ld) {
+        BresenheimArcDrawer bresenheimArcDrawer = new BresenheimArcDrawer(pd, ld);
+        bresenheimArcDrawer.drawArc(400, 250, 300, 150, 0, 1.7*Math.PI, Color.black);
+    }
+
+    private void drawPie(PixelDrawer pd, LineDrawer ld) {
+        BresenheimPieDrawer bresenheimPieDrawer = new BresenheimPieDrawer(pd, ld);
+        bresenheimPieDrawer.drawPie(100, 100, 300, 150, 0, 1.7*Math.PI, Color.black);
+    }
+
+    private void drawAll(LineDrawer ld, PixelDrawer pd) {
+        //drawSnowFlake(ld, getWidth() / 2, getHeight() / 2, 150, 28);
+        //ld.drawLine(getWidth() / 2, getHeight() / 2, (int) position.getX(), (int) position.getY());
+        drawArc(pd, ld);
+        drawPie(pd, ld);
+
     }
 
     @Override

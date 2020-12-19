@@ -16,7 +16,7 @@ WuLineDrawer implements LineDrawer {
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
 
-        Color c = Color.cyan;
+        Color c = Color.black;
         int dx = x2 - x1;
         int dy = y2 - y1;
         int signX = (int)Math.signum(dx);
