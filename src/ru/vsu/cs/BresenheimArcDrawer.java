@@ -8,11 +8,9 @@ import java.awt.*;
 
 public class BresenheimArcDrawer implements ArcDrawer {
     private PixelDrawer pd;
-    private LineDrawer ld;
 
-    public BresenheimArcDrawer(PixelDrawer pd, LineDrawer ld) {
+    public BresenheimArcDrawer(PixelDrawer pd) {
         this.pd = pd;
-        this.ld = ld;
     }
 
     @Override
@@ -29,21 +27,6 @@ public class BresenheimArcDrawer implements ArcDrawer {
                 lastX++;
             }
         }
-        ld.drawLine(
-                arc.getXcenter(),
-                arc.getYcenter(),
-                arc.getACosMaxAngle() + arc.getXcenter(),
-                arc.getBSinMaxAngle() + arc.getYcenter(),
-                color
-        );
-        if (arcAngle < 2* Math.PI)
-        ld.drawLine(
-                arc.getXcenter(),
-                arc.getYcenter(),
-                arc.getACosMinAngle() + arc.getXcenter(),
-                arc.getBSinMinAngle() + arc.getYcenter(),
-                color
-        );
     }
 
     private void drawArcPixel(Arc arc, int x, int y, Color color) {
@@ -55,7 +38,7 @@ public class BresenheimArcDrawer implements ArcDrawer {
 
     private void colorPixel(Arc arc, int x, int y, Color color) {
         if (arc.isPointInside(x, y)) {
-            pd.setPixel(x + arc.getXcenter(), y + arc.getYcenter(), color);
+            pd.setPixel(arc.getXcenter() + x, arc.getYcenter() - y, color);
         }
     }
 

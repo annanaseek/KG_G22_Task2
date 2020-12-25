@@ -30,9 +30,9 @@ public class BresenheimPieDrawer implements PieDrawer {
                 lastX++;
             }
         }
-        ld.drawLine(pie.getXcenter(), pie.getYcenter(), pie.getACosMaxAngle() + pie.getXcenter(), pie.getBSinMaxAngle() + pie.getYcenter(), color);
-        if (arcAngle < 2* Math.PI) {
-            ld.drawLine(pie.getXcenter(), pie.getYcenter(), pie.getACosMinAngle() + pie.getXcenter(), pie.getBSinMinAngle() + pie.getYcenter(), color);
+        ld.drawLine(pie.getXcenter(), pie.getYcenter(), pie.getACosMaxAngle() + pie.getXcenter(), pie.getYcenter() - pie.getBSinMaxAngle(), color);
+        if (arcAngle < 2 * Math.PI) {
+            ld.drawLine(pie.getXcenter(), pie.getYcenter(), pie.getACosMinAngle() + pie.getXcenter(), pie.getYcenter() - pie.getBSinMinAngle(), color);
         }
     }
 
@@ -44,8 +44,8 @@ public class BresenheimPieDrawer implements PieDrawer {
     }
 
     private void colorPixel(Pie pie, int x, int y, Color color) {
-        if (!pie.isPointInside(x, y)) {
-            pd.setPixel(x + pie.getXcenter(), y + pie.getYcenter(), color);
+        if (pie.isPointInside(x, y)) {
+            pd.setPixel(pie.getXcenter() + x, pie.getYcenter() - y, color);
         }
     }
 }

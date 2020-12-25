@@ -4,6 +4,7 @@ import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.ArcDrawer;
 import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.LineDrawer;
 import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PieDrawer;
 import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.PixelDrawer;
+import ru.vsu.cs.kg2020.nuzhnykh_a_v.task2.testing.TestArcs;
 import ru.vsu.cs.pixel_lines.BresenheimLineDrawer;
 
 import javax.swing.*;
@@ -18,6 +19,17 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
 
     DrawPanel() {
         this.addMouseMotionListener(this);
+        try {
+            TestArcs.startTest(
+                    new MyFactoryImplementation(),
+                    TestArcs.IMG_DIFF,
+                    TestArcs.TEST_PIE | TestArcs.TEST_ARC,
+                    true,
+                    "C:\\Users\\79525\\IdeaProjects\\кг\\KG_G22_Task2\\src\\ru\\vsu\\cs\\img"
+                    );
+        } catch (Exception e) {
+            System.out.println("oshibka");
+        }
     }
 
     @Override
@@ -48,8 +60,8 @@ public class DrawPanel extends JPanel implements MouseMotionListener {
     }
 
     private void drawArc(PixelDrawer pd, LineDrawer ld) {
-        ArcDrawer bresenheimArcDrawer = new BresenheimArcDrawer(pd, ld);
-        bresenheimArcDrawer.drawArc(400, 250, 300, 150, 0, 1.7*Math.PI, Color.black);
+        ArcDrawer bresenheimArcDrawer = new BresenheimArcDrawer(pd);
+        bresenheimArcDrawer.drawArc(400, 250, 300, 150, 0.5 * Math.PI,  Math.PI, Color.black);
     }
 
     private void drawPie(PixelDrawer pd, LineDrawer ld) {

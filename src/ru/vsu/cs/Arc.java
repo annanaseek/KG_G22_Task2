@@ -4,11 +4,12 @@ public class Arc {
     private int x, y, width, height, xcenter, ycenter, a, b, ACosMinAngle, ACosMaxAngle, BSinMinAngle, BSinMaxAngle;
     private double minAngle, maxAngle,
             sinMinAngle, sinMaxAngle, cosMinAngle, cosMaxAngle, arcAngle;
-    private final double TOO_SMALL = .01;
+    private final double TOO_SMALL = .001;
     private int[] processed;
 
 
     Arc(int x, int y, int width, int height, double startAngle, double arcAngle) {
+//        startAngle -= 0.5 * Math.PI;
         this.x = x;
         this.y = y;
         this.arcAngle = arcAngle;
